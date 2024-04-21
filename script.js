@@ -28,7 +28,7 @@ const showCard = (data) => {
                 item['movies'].forEach(movies => {
                     const newMoviesListItem = document.createElement('li');
                     newMoviesListItem.innerHTML = `${movies}`;
-                    newMoviesListItem.style.marginLeft = 10 + 'px'
+                    newMoviesListItem.style.marginLeft = 10 + 'px';
                     newMoviesList.append(newMoviesListItem);
                 });
             } else {
