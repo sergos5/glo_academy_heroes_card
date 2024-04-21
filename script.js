@@ -5,7 +5,7 @@ const replaceCc = (str) => {
     str = str.replace(/([A-Z])/g, " $1");
     str = str.replace(/([A-Z])/g, u => u.toLowerCase());
     return str;
-}
+};
 
 const showCard = (data) => {
     data.forEach((item) => {
@@ -18,7 +18,6 @@ const showCard = (data) => {
         heroesName.textContent = item['name'];
 
         for (let key in item) {
-
             const newHeroesDataListItem = document.createElement('li');
             if (key === 'name' || key === 'photo') continue;
             if (key === 'movies') {
