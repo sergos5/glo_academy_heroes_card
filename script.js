@@ -1,6 +1,7 @@
 const cardWrapper = document.querySelector('.wrapper');
 const cardBlock = document.querySelector('.card');
 const moviesSelect = document.querySelector('.movies_select');
+const title = document.querySelector('.title');
 
 
 const replaceCc = (str) => {
@@ -21,8 +22,10 @@ const createMoviesList = (list) => {
 const showFilmSelectHeroes = (film) => {
     const cardBlockList = cardWrapper.querySelectorAll('.card');
     if (film === 'all') {
-        cardBlockList.forEach((cardBlock) => cardBlock.style.display = 'block')
+        title.textContent = 'All the heroes of the Marvel cinematic universe';
+        cardBlockList.forEach((cardBlock) => cardBlock.style.display = 'block');
     } else {
+        title.textContent = `The heroes of the film: "${film}"`;
         cardBlockList.forEach((cardBlock) => {
             cardBlock.style.display = 'none';
             const moviesList = cardBlock.querySelectorAll('.moviesBlock li');
