@@ -7,23 +7,60 @@
 
 body{
     background-color: #333;
+    
 }
 
-h1 {
+.container {
+    min-width: 600px;
+    position: relative;
+    text-align: center;
+}
+
+h1, h2 {
     color: red;
     text-align: center;
-    margin: 20px;
-    font-size: 50px;
+    margin: 10px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 20px;
+    color: rgb(207, 47, 47);
 }
 
+
+.header {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+    background-color: rgba(51, 51, 51, 0.8);
+   
+}
+.movies_select {
+    position: absolute;
+    top: 20px;
+    right: 80px;
+    width: 250px;
+    height: 30px;
+    background-color: rgba(76, 120, 162, .7);
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    z-index: 5;
+}
+
+option {
+    background-color: rgba(89, 97, 105, 0.7);
+}
 .wrapper {
-    display: flex;
+    position: relative;
+    top: 180px;
+    display: flex;    
     margin: 0 auto;
     justify-content: center;
     align-content: center;
-    max-width: 1600px;
+    max-width: 1200px;
     flex-wrap: wrap;
-
 }
 
 .center{
@@ -34,8 +71,7 @@ h1 {
 .card{
     cursor: pointer;
     width: 340px;
-    height: 480px;
-    
+    height: 480px;    
 }
 
 .front,

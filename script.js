@@ -1,5 +1,7 @@
 const cardWrapper = document.querySelector('.wrapper');
 const cardBlock = document.querySelector('.card');
+const moviesSelect = document.querySelector('.movies_select');
+
 
 const replaceCc = (str) => {
     str = str.replace(/([A-Z])/g, " $1");
@@ -7,7 +9,49 @@ const replaceCc = (str) => {
     return str;
 };
 
+const createMoviesList = (list) => {
+    list.forEach((item) => {
+        const option = document.createElement('option');
+        option.setAttribute.value = item;
+        option.textContent = item;
+        moviesSelect.append(option);
+    });
+};
+
+const showFilmSelectHeroes = (film) => {
+    const cardBlockList = cardWrapper.querySelectorAll('.card');
+    if (film === 'all') {
+        cardBlockList.forEach((cardBlock) => cardBlock.style.display = 'block')
+    } else {
+        cardBlockList.forEach((cardBlock) => {
+            cardBlock.style.display = 'none';
+            const moviesList = cardBlock.querySelectorAll('.moviesBlock li');
+            moviesList.forEach((movies) => {
+                if (movies.textContent === film) {
+                    console.log(cardBlock);
+                    cardBlock.style.display = 'block';
+                }
+            });
+        });
+    }
+};
+
+const getMoviesList = (dataList) => {
+    const moviesList = [];
+    dataList.forEach((item) => {
+        if (item['movies']) {
+            item['movies'].forEach((film) => {
+                if (!moviesList.includes(film)) moviesList.push(film);
+            });
+        }
+    });
+    createMoviesList(moviesList.sort());
+};
+
 const showCard = (data) => {
+
+    getMoviesList(data);
+
     data.forEach((item) => {
         const newCard = cardBlock.cloneNode(true);
         const heroesImg = newCard.querySelector('img');
@@ -22,6 +66,7 @@ const showCard = (data) => {
             if (key === 'name' || key === 'photo') continue;
             if (key === 'movies') {
                 const newMoviesList = document.createElement('ul');
+                newMoviesList.setAttribute('class', 'moviesBlock');
                 newMoviesList.innerHTML = `<b>${key}:</b>`;
                 heroesDataList.append(newMoviesList);
                 item['movies'].forEach(movies => {
@@ -43,6 +88,9 @@ const showCard = (data) => {
 
 fetch('./datas/dbHeroes.json')
     .then(response => response.json())
-    .then(data => {
-        showCard(data);
-    });
+    .then(data => showCard(data));
+
+moviesSelect.addEventListener('change', () => {
+    const filmSelect = moviesSelect[moviesSelect.selectedIndex].value;
+    showFilmSelectHeroes(filmSelect);
+});
